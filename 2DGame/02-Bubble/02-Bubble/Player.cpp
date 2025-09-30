@@ -79,18 +79,18 @@ void Player::update(int deltaTime)
 	}
 	if (Game::instance().getKey(GLFW_KEY_UP))
 	{
-
 		posPlayer.y -= 2;
-
+		if (map->collisionMoveUp(posPlayer, glm::ivec2(32, 32), &posPlayer.y))
+		{
+			posPlayer.y += 2;
+		}
 	}
 	else if (Game::instance().getKey(GLFW_KEY_DOWN))
 	{
-
 		posPlayer.y += 2;
 		if (map->collisionMoveDown(posPlayer, glm::ivec2(32, 32), &posPlayer.y))
 		{
 			posPlayer.y -= 2;
-			sprite->changeAnimation(STAND_RIGHT);
 		}
 	}
 
